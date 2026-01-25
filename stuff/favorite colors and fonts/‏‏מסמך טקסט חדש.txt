@@ -1,0 +1,6 @@
+VINTAGE GREY #393E46
+SHADOW  #232931
+SEAFOAM GREEN #4ECCA3
+HEADING FONT; LOBSTER, CURSIVE 
+P FONT; INDIE FLOWER
+https://fonts.googleapis.com/css?family=Indie+Flower|Lobster
