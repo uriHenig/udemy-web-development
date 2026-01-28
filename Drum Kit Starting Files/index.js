@@ -1,40 +1,3 @@
-function Audio(fileLocation) {
-  this.fileLocation = fileLocation;
-  this.play = function () {
-    fileLocation.play();
-  };
-}
-// var buttons = document.querySelectorAll(".drum");
-// for (let i = 0; i < buttons.length; i++) {
-//   buttons[i].addEventListener("click", function () {
-//     switch (this.innerHTML) {
-//       case "w":
-//         new Audio("/Drum Kit Starting Files/sounds/crash.mp3").play();
-//         break;
-//       case "a":
-//         new Audio("/Drum Kit Starting Files/sounds/kick-bass.mp3").play();
-//         break;
-//       case "s":
-//         new Audio("/Drum Kit Starting Files/sounds/snare.mp3").play();
-//         break;
-//       case "d":
-//         new Audio("/Drum Kit Starting Files/sounds/tom-1.mp3").play();
-//         break;
-//       case "j":
-//         new Audio("/Drum Kit Starting Files/sounds/tom-2.mp3").play();
-//         break;
-//       case "k":
-//         new Audio("/Drum Kit Starting Files/sounds/tom-3.mp3").play();
-//         break;
-//       case "l":
-//         new Audio("/Drum Kit Starting Files/sounds/tom-4.mp3").play();
-//         break;
-//       default:
-//         break;
-//     }
-//   });
-// }
-
 // **Modern way**
 // const sounds = {
 //   w: "/Drum Kit Starting Files/sounds/crash.mp3",
@@ -52,19 +15,51 @@ function Audio(fileLocation) {
 //   });
 // });
 
-// function takeSuitcase() {
-//   alert("Hi, may I take your suitcase Ma'am?");
-// }
+document.addEventListener("keydown", function (e) {
+  var keyPressed = e.key;
+  console.log(keyPressed);
+  buttonAnimation(keyPressed);
+  switch (keyPressed) {
+    case "w":
+      var tom1 = new Audio("sounds/tom-1.mp3");
+      tom1.play();
+      break;
+    case "a":
+      var tom2 = new Audio("sounds/tom-2.mp3");
+      tom2.play();
+      break;
+    case "s":
+      var tom3 = new Audio("sounds/tom-3.mp3");
+      tom3.play();
+      break;
+    case "d":
+      var tom4 = new Audio("sounds/tom-4.mp3");
+      tom4.play();
+      break;
+    case "j":
+      var crash = new Audio("sounds/crash.mp3");
+      crash.play();
+      break;
+    case "k":
+      var kick = new Audio("sounds/kick-bass.mp3");
+      kick.play();
+      break;
+    case "l":
+      var snare = new Audio("sounds/snare.mp3");
+      snare.play();
+      break;
+    default:
+  }
+});
 
-// function BellBoy(name, age, hasWorkPermit, languages) {
-//   this.name = name;
-//   this.age = age;
-//   this.hasWorkPermit = hasWorkPermit;
-//   this.languages = languages;
-//   takeSuitcase();
-// }
-
-// var bellboy1 = new BellBoy("Timmy", 19, true, ["French", "English"]);
-var audio = new Audio("/Drum Kit Starting Files/sounds/tom-1.mp3");
-document.querySelectorAll(".drum")[3].addEventListener("click", console.log("first"));
-// audio.play()
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  if (activeButton) {
+    activeButton.classList.add("pressed");
+    setTimeout(() => {
+      activeButton.classList.remove("pressed");
+    }, 100);
+  } else {
+    activeButton.classList.remove("pressed");
+  }
+}
