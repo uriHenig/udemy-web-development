@@ -3,9 +3,7 @@ var gamePattern = [];
 function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   gamePattern.push(buttonColours[randomNumber]);
-  //   console.log(gamePattern.at(-1));
   var randomChosenColour = gamePattern.at(-1);
-  //   console.log(randomChosenColour);
   buttonAnimation(randomChosenColour);
   playSound(randomChosenColour);
 }
@@ -21,5 +19,8 @@ function playSound(randomColor) {
   sound.play();
 }
 
-// hide
-// unhide with timeout
+// store color user clicks in variable
+$("div.btn").on("click", function () {
+  var userChosenColour = $(this).attr("id");
+  console.log(userChosenColour);
+});
