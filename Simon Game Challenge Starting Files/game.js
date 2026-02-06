@@ -39,7 +39,6 @@ $("div.btn").on("click", function () {
 function checkAnswer(currentLevel) {
   var i = currentLevel.length - 1;
   if (currentLevel[i] === gamePattern[i]) {
-    console.log("success");
     if (currentLevel.length === gamePattern.length) {
       //check only when user has finished clicking
       setTimeout(() => {
@@ -48,8 +47,7 @@ function checkAnswer(currentLevel) {
       }, 1000);
     }
   } else {
-    console.log("wrong");
-    playSound("wrong");
+    gameOver();
   }
 }
 
@@ -67,4 +65,12 @@ function buttonAnimation(selector, randomColor, styleName) {
   setTimeout(() => {
     $(selector + randomColor).removeClass(styleName);
   }, 100);
+}
+
+function gameOver() {
+  playSound("wrong");
+  $("body").addClass("game-over");
+  setTimeout(() => {
+    $("body").removeClass("game-over");
+  }, 200);
 }
