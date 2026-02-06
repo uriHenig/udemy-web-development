@@ -41,7 +41,7 @@ function checkAnswer(currentLevel) {
   if (currentLevel[i] === gamePattern[i]) {
     console.log("success");
     if (currentLevel.length === gamePattern.length) {
-      //check only when user has finished clicking a
+      //check only when user has finished clicking
       setTimeout(() => {
         nextSequence();
         userClickedPattern = [];
@@ -49,6 +49,7 @@ function checkAnswer(currentLevel) {
     }
   } else {
     console.log("wrong");
+    playSound("wrong");
   }
 }
 
