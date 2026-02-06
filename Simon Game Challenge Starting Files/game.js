@@ -21,7 +21,7 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   gamePattern.push(buttonColours[randomNumber]);
   var randomChosenColour = gamePattern.at(-1);
-  buttonAnimation(randomChosenColour);
+  buttonAnimation("div#", randomChosenColour, "hidden");
   playSound(randomChosenColour);
   console.log(gamePattern);
 }
@@ -30,7 +30,7 @@ function nextSequence() {
 $("div.btn").on("click", function () {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
-  animateClick(userChosenColour);
+  buttonAnimation("div#", userChosenColour, "pressed");
   playSound(userChosenColour);
   console.log(userClickedPattern);
   checkAnswer(userClickedPattern);
@@ -62,17 +62,9 @@ function playSound(randomColor) {
   sound.play();
 }
 
-function buttonAnimation(randomColor) {
-  $("div#" + randomColor).addClass("hidden");
+function buttonAnimation(selector, randomColor, styleName) {
+  $(selector + randomColor).addClass(styleName);
   setTimeout(() => {
-    $("div#" + randomColor).removeClass("hidden");
+    $(selector + randomColor).removeClass(styleName);
   }, 100);
 }
-
-function animateClick(currentColour) {
-  $("div#" + currentColour).addClass("pressed");
-  setTimeout(() => {
-    $("div#" + currentColour).removeClass("pressed");
-  }, 100);
-}
-// when user clicks, check the index of answer to gameSequence
