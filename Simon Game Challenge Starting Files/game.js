@@ -17,7 +17,7 @@ $(document).on("keydown", function () {
 // 2. changes level + generates random color + stores sequence of colors
 function nextSequence() {
   level++;
-  changeLevels(level);
+  changeBanner("level ", level);
   var randomNumber = Math.floor(Math.random() * 4);
   gamePattern.push(buttonColours[randomNumber]);
   var randomChosenColour = gamePattern.at(-1);
@@ -51,8 +51,12 @@ function checkAnswer(currentLevel) {
   }
 }
 
-function changeLevels(level) {
-  $("h1").text("Level " + level);
+function changeBanner(text, input) {
+  if (input) {
+    $("h1").text(text + input);
+  } else {
+    $("h1").text(text);
+  }
 }
 
 function playSound(randomColor) {
@@ -73,4 +77,12 @@ function gameOver() {
   setTimeout(() => {
     $("body").removeClass("game-over");
   }, 200);
+  changeBanner("Game Over, Press Any Key to Restart", null);
+  startOver();
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  gameStarted = false;
 }
